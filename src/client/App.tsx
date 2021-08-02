@@ -4,11 +4,12 @@ import {loadStripe} from '@stripe/stripe-js';
 import CheckoutForm from './checkout-form';
 
 /* HOOK REACT EXAMPLE */
-const stripePromise = loadStripe('pk_test_51JJIxvA6v0p4b8rIruyoONfX8QwWPQi1xHDCXIkPAlLt2QquEolHgfOJsnGaNZ92BqjeBo0KW72Uz7mh3Fyj2gy400HIiQx9Z3');
+const stripe = loadStripe('pk_test_51JJIxvA6v0p4b8rIruyoONfX8QwWPQi1xHDCXIkPAlLt2QquEolHgfOJsnGaNZ92BqjeBo0KW72Uz7mh3Fyj2gy400HIiQx9Z3');
+
 
 const App = (props: AppProps) => {
 	return (
-		<Elements stripe={stripePromise}>
+		<Elements stripe={stripe}>
 			<CheckoutForm />
 		</Elements>
 	);
