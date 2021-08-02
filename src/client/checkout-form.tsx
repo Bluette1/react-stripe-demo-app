@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 
-const CheckoutForm = (props) => {
-
+const CheckoutForm = () => {
+	const stripe = useStripe();
+	const elements = useElements();
 	const [values, setValues] = useState({
 		name: '',
 		amount: '',
@@ -26,19 +27,18 @@ const CheckoutForm = (props) => {
 
 	const handleSubmit = async(e) => {
 		e.preventDefault();
-		const {stripe} = props;
 
-    if (!stripe) {
+    if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
-			console.log('Here: ')
       return;
     }
+		const cardElement = elements.getElement(CardElement);
+
 		try {
-			const token = await stripe.createToken({name: values.name});
+			const token = await stripe.createToken(cardElement);
 			console.log('Token: ', token);
 		} catch (error) {
-			console.log('Error: ', error)
 			throw error;
 		}
 	}
@@ -63,7 +63,11 @@ const CheckoutForm = (props) => {
 					Credit Card Number --Exp. date --CVC
 				</label>
 				<CardElement className="p-2 border border-dark mb-2"/>
-				<button className="btn btn-primary border border-dark">Pay</button>
+				<button
+				type="submit" 
+				disabled={!stripe}
+				className="btn btn-primary border border-dark"
+				>Pay</button>
 			</form>
 		</main>
 	);

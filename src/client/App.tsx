@@ -5,8 +5,6 @@ import CheckoutForm from './checkout-form';
 
 /* HOOK REACT EXAMPLE */
 const stripe = loadStripe('pk_test_51JJIxvA6v0p4b8rIruyoONfX8QwWPQi1xHDCXIkPAlLt2QquEolHgfOJsnGaNZ92BqjeBo0KW72Uz7mh3Fyj2gy400HIiQx9Z3');
-
-
 const App = (props: AppProps) => {
 	return (
 		<Elements stripe={stripe}>
