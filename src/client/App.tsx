@@ -1,31 +1,21 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import CheckoutForm from './checkout-form';
 
 /* HOOK REACT EXAMPLE */
+const stripePromise = loadStripe('pk_test_51JJIxvA6v0p4b8rIruyoONfX8QwWPQi1xHDCXIkPAlLt2QquEolHgfOJsnGaNZ92BqjeBo0KW72Uz7mh3Fyj2gy400HIiQx9Z3');
+
 const App = (props: AppProps) => {
-	const [greeting, setGreeting] = useState<string>('');
-
-	useEffect(() => {
-		async function getGreeting() {
-			try {
-				const res = await fetch('/api/hello');
-				const greeting = await res.json();
-				setGreeting(greeting);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		getGreeting();
-	}, []);
-
 	return (
-		<main className="container my-5">
-			<h1 className="text-primary text-center">Hello {greeting}!</h1>
-		</main>
+		<Elements stripe={stripePromise}>
+			<CheckoutForm />
+		</Elements>
 	);
 };
 
 interface AppProps {}
+export interface IAppState {}
 
 /* CLASS REACT EXAMPLE */
 // class App extends React.Component<IAppProps, IAppState> {
