@@ -36,8 +36,18 @@ const CheckoutForm = () => {
 		const cardElement = elements.getElement(CardElement);
 
 		try {
-			const token = await stripe.createToken(cardElement);
+			const { token } = await stripe.createToken(cardElement);
+			const { amount } = values;
 			console.log('Token: ', token);
+			await fetch('/api/donate',{
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				body: JSON.stringify({token, amount}),
+				//redirect, clear input, alert thank you
+			}
+			)
 		} catch (error) {
 			throw error;
 		}

@@ -1,5 +1,7 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
+require('dotenv').config({ path: './.env' }); 
 
 const serverConfig = {
 	mode: process.env.NODE_ENV || 'development',
@@ -56,7 +58,12 @@ const clientConfig = {
 	output: {
 		filename: 'app.js',
 		path: path.resolve(__dirname, 'public/js')
-	}
+	},
+	plugins: [
+    new webpack.DefinePlugin({
+			"process.env": JSON.stringify(process.env),
+		}),
+]
 };
 
 module.exports = [serverConfig, clientConfig];
