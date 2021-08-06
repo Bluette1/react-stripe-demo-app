@@ -11,6 +11,7 @@
     -   [🙌 Styling the App](#-styling-the-app)
 -   [🗄️ Configuration Files](#%EF%B8%8F-configuration-files)
     -   [⁉️ Webpack Config 🤦🤦](#%EF%B8%8F-webpack-config-)
+-   [ℹ️ Integration With Stripe](#-integration-with-Stripe)
 -   [🔐 Closing Remarks](#-closing-remarks)
 
 &nbsp;
@@ -236,6 +237,9 @@ Don't stress about the guts of these properties, just focus on their general pur
 -   `output` is where we output our bundle to, which is `public/js/app.js`.
 
 &nbsp;
+## Integration With Stripe
+- Follow instructions according to this [video tutorial](https://www.youtube.com/watch?v=dEahSdI7p7M)
+- [Stripe Documentation](https://stripe.com/docs/payments/accept-a-payment-charges)
 
 ## 🔐 Closing Remarks
 
